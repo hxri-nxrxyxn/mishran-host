@@ -53,4 +53,11 @@
         isConnected = false;
         isConnecting = false;
     };
+    const startAll = () => {
+        // send a command to server to start recording on all clients
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ type: "start_recording" }));
+        }
+        //checks if socket exists and checks if the connection is open and ready to send data
+    };
 </script>
