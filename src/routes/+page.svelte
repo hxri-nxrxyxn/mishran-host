@@ -1,4 +1,5 @@
 <script>
+    import { command } from "$app/server";
     import { onDestroy } from "svelte"; // imports the onDestroy lifecycle helper from Svelter.
     import { Connect } from "vite";
     let serverAddress = ""; //variable for holding server IP and port
@@ -56,8 +57,13 @@
     const startAll = () => {
         // send a command to server to start recording on all clients
         if (socket && socket.readyState === WebSocket.OPEN) {
-            socket.send(JSON.stringify({ type: "start_recording" }));
+            socket.send(JSON.stringify({ command: "start_all" }));
         }
         //checks if socket exists and checks if the connection is open and ready to send data
+    };
+    const stopAll = () => {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ command: "stop_all" }));
+        }
     };
 </script>
