@@ -37,4 +37,20 @@
             clients = data.clients; //if its a state update message, update the clients array with the new list of connected clients
         }
     };
+    socket.onclose = () => {
+        status = "❌ Disconnected. Please reconnect"; //if connection closes update status and flags
+        resetControls(); //clear connection-related flags (sets isConnected and isConnecting to false)
+    };
+    socket.onerror = (err) => {
+        //callback for websocket errors
+        console.error("Websocket error:;", err);
+        status =
+            "Error connecting to server. Check the addredd and ensure the server is running";
+        resetControls(); //on error also reset controls
+    };
+    const resetControls = () => {
+        //resets UI state related to connection
+        isConnected = false;
+        isConnecting = false;
+    };
 </script>
