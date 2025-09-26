@@ -66,4 +66,9 @@
             socket.send(JSON.stringify({ command: "stop_all" }));
         }
     };
+    onDestroy(() => {
+        if (socket) {
+            socket.close(); //closes the websocket connection when the component is destroyed (user navigates away)
+        }
+    });
 </script>
