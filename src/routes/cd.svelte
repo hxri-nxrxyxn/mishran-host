@@ -1,20 +1,24 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
+
 	const speed = 0.05;
 	let rotation = 0;
-	let frame;
+	let frame; // This will be 'undefined' on the server
 
 	onMount(() => {
 		const animate = () => {
 			rotation += speed;
-			frame = requestAnimationFrame(animate); // Create a continuous loop
+			frame = requestAnimationFrame(animate);
 		};
-		
-		animate(); // Start the loop
+		animate();
 	});
 
+	// This now safely handles both server and client environments
 	onDestroy(() => {
-		cancelAnimationFrame(frame); // Stop the animation loop
+		// Only try to cancel the animation if 'frame' has been assigned a value (in the browser)
+		if (frame) {
+			cancelAnimationFrame(frame);
+		}
 	});
 </script>
 
@@ -26,13 +30,10 @@
 
 <style>
 	.img {
-		position: absolute;
+		position: fixed;
 		top: 0;
-		width: 100vw;
-		transform: translateY(-50%);
 	}
 	img {
-		width: 100%;
-		height: 100%;
+		width: 100vw;
 	}
 </style>

@@ -1,5 +1,8 @@
 <script>
     import CompactDisc from "./cd.svelte";
+    import Home from "./home.svelte";
+    import Recording from "./recording.svelte";
+    import Addr from "./addr.svelte";
 
     // import { onDestoroy } from "svelte"; // imports the onDestroy lifecycle helper from Svelter.
     // let serverAddress = ""; //variable for holding server IP and port
@@ -75,4 +78,7 @@
 
 <main>
     <CompactDisc/>
+    <Home/>
+    <Recording/>
+    <Addr/>
 </main>
