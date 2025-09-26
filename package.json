@@ -18,8 +18,10 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
+		"@boengli/capacitor-fullscreen": "^0.0.19",
 		"@capacitor/android": "^7.4.3",
 		"@capacitor/core": "^7.4.3",
+		"@capacitor/status-bar": "^7.0.3",
 		"@sveltejs/adapter-static": "^3.0.9"
 	}
 }

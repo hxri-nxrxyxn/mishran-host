@@ -1,6 +1,19 @@
 <script>
 	import { onDestroy } from 'svelte';
 	import CompactDisc from './cd.svelte';
+import { Fullscreen } from '@boengli/capacitor-fullscreen';
+
+
+const acc = async () => {
+try {
+  await Fullscreen.activateImmersiveMode();
+  console.log('Fullscreen enabled');
+} catch (error) {
+  console.error('Error enabling fullscreen:', error);
+}
+}
+
+acc()
 
 	// UI State - using $state runes
 	let page = $state(0); // 0: Address, 1: Home, 2: Recording
@@ -254,6 +267,11 @@
 		font-weight: 700;
 		color: #666;
 		font-size: 1.25rem;
+		transition: all ease 0.3s;
+	}
+
+	.matrix__column p:hover {
+		color: white;
 	}
 	
 	.connect-btn {

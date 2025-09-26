@@ -105,6 +105,10 @@
     .matrix__column p {
         font-weight: 700;
         color: #666;
-        font-size: 1.25rem
+        font-size: 1.25rem;
+        transition: all ease 0.3s; 
+    }
+    .matrix__column p:hover {
+        color: white;
     }
 </style>
