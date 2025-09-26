@@ -1,7 +1,5 @@
 <script>
-    import { command } from "$app/server";
     import { onDestroy } from "svelte"; // imports the onDestroy lifecycle helper from Svelter.
-    import { Connect } from "vite";
     let serverAddress = ""; //variable for holding server IP and port
     let status = "Enter server address to connect."; //message to show to user
     let clients = []; //hold the list of connected clients received from server
@@ -22,7 +20,7 @@
         //accepts address parameter which should be a string like 127.0.0.1:8000
         status = "Connecting to ${address}..."; //updates status message
         isConnecting = true; //sets connecting flag to true so UI can show a loading state
-        socket = new WebSocket("ws://${address}"); //creates a new websocket object and assigns it to socket
+        socket = new WebSocket("ws://${address}/host_monitor"); //creates a new websocket object and assigns it to socket
         //ws is a protocol for websocket connections ,it opens a two way pipebetween browser and server. Once opened client and server can send messages to each other at any time without reloading
     };
     socket.onopen = () => {
@@ -44,9 +42,9 @@
     };
     socket.onerror = (err) => {
         //callback for websocket errors
-        console.error("Websocket error:;", err);
+        console.error("Websocket error:", err);
         status =
-            "Error connecting to server. Check the addredd and ensure the server is running";
+            "Error connecting to server. Check the address and ensure the server is running";
         resetControls(); //on error also reset controls
     };
     const resetControls = () => {
