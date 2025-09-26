@@ -24,4 +24,10 @@
         socket = new WebSocket("ws://${address}"); //creates a new websocket object and assigns it to socket
         //ws is a protocol for websocket connections ,it opens a two way pipebetween browser and server. Once opened client and server can send messages to each other at any time without reloading
     };
+    socket.onopen = () => {
+        //if connection succeeds show connected set flags
+        status = "✅ Connected to server";
+        isConnected = true;
+        isConnecting = false;
+    };
 </script>
