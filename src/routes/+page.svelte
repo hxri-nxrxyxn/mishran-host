@@ -30,4 +30,11 @@
         isConnected = true;
         isConnecting = false;
     };
+    socket.onmessage = (event) => {
+        //when a message is received from server this event handler is called
+        const data = JSON.parse(event.data); //parses the JSON string received into a JS object
+        if (data.type === "state_update") {
+            clients = data.clients; //if its a state update message, update the clients array with the new list of connected clients
+        }
+    };
 </script>
